@@ -6,9 +6,6 @@
   "bin": {
     "github-release": "./bin/github-release.js"
   },
-  "engines": {
-    "node": ">=6"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,7 +25,6 @@
   "dependencies": {
     "commander": "^2.11.0",
     "get-stdin": "^5.0.1",
-    "github": "^11.0.0",
-    "github-api": "^3.0.0"
+    "github": "^11.0.0"
   }
 }

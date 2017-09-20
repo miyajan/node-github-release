@@ -1,4 +1,5 @@
-const GitHub = require('github-api');
+'use strict';
+
 const GitHubApi = require('github');
 const Tag = require('./lib/tag');
 const Release = require('./lib/release');

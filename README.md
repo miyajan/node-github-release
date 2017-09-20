@@ -2,13 +2,19 @@
 
 CLI to create and edit releases on Github (and upload artifacts)
 
+[![npm version](https://img.shields.io/npm/v/node-github-release.svg)](https://www.npmjs.com/package/node-github-release)
+[![npm downloads](https://img.shields.io/npm/dm/node-github-release.svg)](https://www.npmjs.com/package/node-github-release)
+![Node.js Version Support](https://img.shields.io/badge/Node.js%20support-v4,v6,v8-brightgreen.svg)
+[![dependencies Status](https://david-dm.org/miyajan/node-github-release/status.svg)](https://david-dm.org/miyajan/node-github-release)
+![License](https://img.shields.io/npm/l/node-github-release.svg)
+
 ## Acknowledgement
 
 This tool is greatly inspired by [aktau's go implementation](https://github.com/aktau/github-release). Thank you so, so much!
 
 ## Requirement
 
-* Node >= 6
+* Node: v4, v6, v8
 
 ## Usage
 
