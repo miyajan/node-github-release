@@ -1,6 +1,6 @@
 {
   "name": "node-github-release",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "CLI to create and edit releases on Github (and upload artifacts)",
   "main": "index.js",
   "bin": {
