@@ -32,8 +32,8 @@ $ github-release --help
 # make your tag and upload
 $ git tag ... && git push --tags
 
-# check the current tags and existing releases of the repo
-$ github-release info -u miyajan -r node-github-release
+# check the current tags and existing releases of the repo on the current directory
+$ github-release info
 tags:
 - 0.1.0 (commit: https://api.github.com/repos/miyajan/node-github-release/commits/...)
 releases:
@@ -42,8 +42,6 @@ releases:
 
 # create a formal release
 $ github-release release \
-    --user miyajan \
-    --repo node-github-release \
     --tag 0.1.0 \
     --name "..." \
     --description "..." \
@@ -53,16 +51,12 @@ $ github-release release \
 # having to delete it first (this also means you can edit without having
 # to upload your files again)
 $ github-release edit \
-    --user miyajan \
-    --repo node-github-release \
     --tag 0.1.0 \
     --name "..." \
     --description "..."
 
 # upload a file
 $ github-release upload \
-    --user miyajan \
-    --repo node-github-release \
     --tag 0.1.0 \
     --name "..." \
     --file ...
@@ -72,8 +66,6 @@ $ github-release upload ...
 
 # you're not happy with it, so delete it
 $ github-release delete \
-    --user miyajan \
-    --repo node-github-release \
     --tag 0.1.0
 ```
 
