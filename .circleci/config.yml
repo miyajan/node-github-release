@@ -25,17 +25,15 @@ jobs:
           command: npm publish
 workflows:
   version: 2
-  docker-build:
+  build:
     jobs:
-      - build:
+      - docker-build:
           filters:
             branches:
               ignore: /.*/
             tags:
               only: /^[0-9]+\.[0-9]+\.[0-9]+$/
-  npm-publish:
-    jobs:
-      - build:
+      - npm-publish:
           filters:
             branches:
               ignore: /.*/
