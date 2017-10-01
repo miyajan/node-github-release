@@ -1,0 +1,7 @@
+.git/
+.idea/
+node_modules/
+.gitignore
+.circleci/
+Dockerfile
+npm-debug.log
