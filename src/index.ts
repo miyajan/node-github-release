@@ -1,29 +1,29 @@
-import * as GitHubApi from 'github';
+import * as Octokit from '@octokit/rest';
 import Tag from './tag';
 import Release from './release';
 import Info from './info';
 
 export default class GitHubRelease {
-    private readonly github: GitHubApi;
+    private readonly octokit: Octokit;
 
     constructor(token: string, host?: string, pathPrefix?: string) {
-        this.github = new GitHubApi({
+        this.octokit = new Octokit({
             host: host,
             pathPrefix: pathPrefix
         });
-        this.github.authenticate({
+        this.octokit.authenticate({
             type: 'token',
             token: token
         });
     }
 
     public info(user: string, repo: string): Promise<Info> {
-        const tags = this.github.repos.getTags({
+        const tags = this.octokit.repos.getTags({
             owner: user,
             repo: repo,
             per_page: 100 // TODO: support for pagination
         });
-        const releases = this.github.repos.getReleases({
+        const releases = this.octokit.repos.getReleases({
             owner: user,
             repo: repo,
             per_page: 100 // TODO: support for pagination
@@ -42,7 +42,7 @@ export default class GitHubRelease {
     }
 
     public release(user: string, repo: string, tag: string, name?: string, description?: string, target?: string, draft?: boolean, preRelease?: boolean): Promise<void> {
-        const options: GitHubApi.ReposCreateReleaseParams = {
+        const options: Octokit.ReposCreateReleaseParams = {
             owner: user,
             repo: repo,
             tag_name: tag
@@ -62,11 +62,11 @@ export default class GitHubRelease {
         if (description !== undefined) {
             options.body = description;
         }
-        return this.github.repos.createRelease(options);
+        return this.octokit.repos.createRelease(options);
     }
 
     public edit(user: string, repo: string, tag: string, name?: string, description?: string, target?: string, draft?: boolean, preRelease?: boolean): Promise<void> {
-        return this.github.repos.getReleaseByTag({
+        return this.octokit.repos.getReleaseByTag({
             owner: user,
             repo: repo,
             tag: tag
@@ -77,7 +77,7 @@ export default class GitHubRelease {
             throw err;
         }).then((res: ReleaseResponse) => {
             const id = res.data.id;
-            const options: GitHubApi.ReposEditReleaseParams = {
+            const options: Octokit.ReposEditReleaseParams = {
                 owner: user,
                 repo: repo,
                 id: id,
@@ -98,12 +98,12 @@ export default class GitHubRelease {
             if (description !== undefined) {
                 options.body = description;
             }
-            return this.github.repos.editRelease(options);
+            return this.octokit.repos.editRelease(options);
         });
     }
 
     public upload(user: string, repo: string, tag: string, name: string, file: string, label?: string): Promise<void> {
-        return this.github.repos.getReleaseByTag({
+        return this.octokit.repos.getReleaseByTag({
             owner: user,
             repo: repo,
             tag: tag
@@ -114,7 +114,7 @@ export default class GitHubRelease {
             throw err;
         }).then((res: ReleaseResponse) => {
             const id = res.data.id;
-            const options: GitHubApi.ReposUploadAssetParams = {
+            const options: Octokit.ReposUploadAssetParams = {
                 owner: user,
                 repo: repo,
                 id: id,
@@ -124,12 +124,12 @@ export default class GitHubRelease {
             if (label !== undefined) {
                 options.label = label;
             }
-            return this.github.repos.uploadAsset(options);
+            return this.octokit.repos.uploadAsset(options);
         });
     }
 
     public destroy(user: string, repo: string, tag: string): Promise<void> {
-        return this.github.repos.getReleaseByTag({
+        return this.octokit.repos.getReleaseByTag({
             owner: user,
             repo: repo,
             tag: tag
@@ -140,12 +140,12 @@ export default class GitHubRelease {
             throw err;
         }).then((res: ReleaseResponse) => {
             const id = res.data.id;
-            const options: GitHubApi.ReposDeleteReleaseParams = {
+            const options: Octokit.ReposDeleteReleaseParams = {
                 owner: user,
                 repo: repo,
                 id: id
             };
-            return this.github.repos.deleteRelease(options);
+            return this.octokit.repos.deleteRelease(options);
         });
     }
 }
