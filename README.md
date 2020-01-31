@@ -19,7 +19,7 @@ This tool is greatly inspired by [aktau's go implementation](https://github.com/
 ## Usage
 
 ```bash
-# set your token
+# set your token (with a scope of `repo` or `public_repo`)
 export GITHUB_TOKEN=...
 
 # (optional) you can point to a different GitHub host (for GitHub Enterprise)
