@@ -27,7 +27,7 @@
     "commander": "^2.11.0",
     "es6-promise": "^4.1.1",
     "get-stdin": "^5.0.1",
-    "github": "^11.0.0",
+    "@octokit/rest": "^16.28.7",
     "simple-git": "^1.77.0"
   },
   "devDependencies": {
